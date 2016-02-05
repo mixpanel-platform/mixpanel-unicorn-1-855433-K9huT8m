@@ -319,10 +319,11 @@
         var runScript = function(val) {
             switch (val) {
                 case 0: //event names
-                    var e_args;
-                    e_args.type = "general";
-                    e_args.limit = limit;
-                    e_args.expire = Math.floor(new Date().getTime() / 1000 + 3600); 
+                var e_args = {
+                                type:"general", 
+                                limit:1000, 
+                                expire:Math.floor(new Date().getTime() / 1000 + 3600)
+                            };
                     getData(e_args,"events/names");
                     break;
                 case 1: //reverse spec
@@ -331,7 +332,7 @@
         };
 
         var getData = function(args, endPoint) {
-            var api_secret, arg_keys, args, args_concat, end_point, key, 
+            var api_secret, arg_keys, args_concat, end_point, key, 
             mixpanel_base_uri, sig, sorted_keys, _i, _len;
             args = {};
             end_point = endPoint;
