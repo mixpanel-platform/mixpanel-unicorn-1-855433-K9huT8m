@@ -3,13 +3,96 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/cache/8ea4a91cd70389613b271278f237f282/bundle/reports.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.js"></script>
+    
+    <style>
+      .myInput {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background-color: #f7f7f7;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 1px solid #bdbdce;
+        border-bottom-color: #b1b0b9;
+        color: #747d94;
+        display: block;
+        font-family: "helvetica neue",helvetica;
+        font-size: 12px;
+        font-weight: bold;
+        text-shadow: 0 1px #eee;
+        line-height: 12px;
+        padding: 9px 12px;
+        margin: 0px 20px 0px;
+        width: 200px;
+      }
+
+    </style>
+    <script type="text/javascript">
+   
+
+</script>
   </head>
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
+    <div class="mixpanel-platform-section">
+      <input style="float: left;" class="myInput" placeholder="API Key" id="projectKey"/>
+      <input style="float: left;" class="myInput" placeholder="API Secret" id="projectSecret"/>
+      <a class="button button_primary" id="submitCred">Set API Credentials</a>
+      <div style="clear: both;"></div>
+    </div>
+    <div id="dateSelect"></div>
     <script>
-      // Run queries and display results here
+      var dateSelect  = $('#dateSelect').MPDatepicker();
+      $('#dateRange').MPDatepicker();
+
+       $(function() {
+      $("#submitCred").click(function() {
+        MP.api.setCredentials($('#projectKey').val(), $('#projectSecret').val());
+        var api_secret, arg_keys, args, args_concat, end_point, key, 
+        mixpanel_base_uri, sig, sorted_keys, _i, _len;
+        args = {};
+        end_point = "export";
+        limit = 10000;
+        api_secret = $('#projectSecret').val();
+        args.api_key = $('#projectKey').val();
+
+        args.from_date = $.format.date(dateSelect.MPDatepicker('value').from, "yyyy-MM-dd");
+        args.to_date = $.format.date(dateSelect.MPDatepicker('value').to, "yyyy-MM-dd");
+        //using Math.floor to round to integer as api expects integer
+        args.expire = Math.floor(new Date().getTime() / 1000 + 3600); 
+        arg_keys = Object.keys(args);
+        sorted_keys = arg_keys.sort();
+        args_concat = "";
+
+        //concatenating key value pairs
+        for (_i = 0, _len = sorted_keys.length; _i < _len; _i++) {
+          key = sorted_keys[_i];
+          args_concat = "" + args_concat + key + "=" + args[key];
+        }
+        sig = $.md5(args_concat + api_secret);
+
+        //merge signature property with args hash
+        $.extend(args, {
+          sig: sig
+        });
+
+        //export endpoint isn't part of the main api and data.mixpanel instead of just mixpanel.com
+        DATA_URI = "https://data.mixpanel.com/api/2.0"
+        DEFAULT_URI = "https://mixpanel.com/api/2.0"
+        BASE_URI = end_point === "export" ? DATA_URI : DEFAULT_URI;
+        $.getJSON("" + BASE_URI + "/" + end_point, args, function(result) {
+          alert("done");
+
+        });
+      });
+});
     </script>
   </body>
 </html>
