@@ -294,7 +294,7 @@
     </div>
     <div class="mixpanel-platform-section">
         <div style="float: left;" id="dateSelect"></div>
-        <div style="float: left;padding-left:20px;" id="scriptType"></div>
+        <div style="float: left;margin-left:20px;" id="scriptType"></div>
         <div style="clear: both;"></div>
     </div>
     <script>
@@ -303,36 +303,40 @@
 
       var scriptType = {
           items: [
-            {label: 'Reverse Spec', value: 'reverse'},
+            {label: '--', value: '-'},
+            {label: 'Event Names', value: 0},
+            {label: 'Reverse Spec', value: 1},
           ]
         };
 
         $(document).ready(function() {
             var dropdown = $('#scriptType').MPSelect(scriptType);     
-            dropdown.on('change', function(e, selection) {              
-                runScript();
+            dropdown.on('change', function(e, selection) {      
+                runScript($('#scriptType').val());
             });
         });
 
-        var runScript = function() {
-            
-
+        var runScript = function(val) {
+            switch (val) {
+                case 0: //event names
+                    var e_args;
+                    e_args.type = "general";
+                    e_args.limit = limit;
+                    e_args.expire = Math.floor(new Date().getTime() / 1000 + 3600); 
+                    getData(e_args,"events/names");
+                    break;
+                case 1: //reverse spec
+                    break;
+            }  
         };
 
-        var getData = function() {
+        var getData = function(args, endPoint) {
             var api_secret, arg_keys, args, args_concat, end_point, key, 
             mixpanel_base_uri, sig, sorted_keys, _i, _len;
             args = {};
-            end_point = "export";
-            limit = 10000;
+            end_point = endPoint;
             api_secret = $('#projectSecret').val();
             args.api_key = $('#projectKey').val();
-
-            args.from_date = $.format.date(dateSelect.MPDatepicker('value').from, "yyyy-MM-dd");
-            args.limit = limit;
-            args.to_date = $.format.date(dateSelect.MPDatepicker('value').to, "yyyy-MM-dd");
-            //using Math.floor to round to integer as api expects integer
-            args.expire = Math.floor(new Date().getTime() / 1000 + 3600); 
             arg_keys = Object.keys(args);
             sorted_keys = arg_keys.sort();
             args_concat = "";
