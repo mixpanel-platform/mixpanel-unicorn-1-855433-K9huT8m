@@ -297,6 +297,8 @@
         <div style="float: left;margin-left:20px;" id="scriptType"></div>
         <div style="clear: both;"></div>
     </div>
+        <div id="chart"></div>
+
     <script>
       var dateSelect  = $('#dateSelect').MPDatepicker();
       $('#dateRange').MPDatepicker();
@@ -358,7 +360,7 @@
             DEFAULT_URI = "https://mixpanel.com/api/2.0"
             BASE_URI = end_point === "export" ? DATA_URI : DEFAULT_URI;
             $.getJSON("" + BASE_URI + "/" + end_point, args, function(result) {
-              alert("done");
+              $('#chart').MPChart({chartType: 'line', data: result.data});
             }); 
         };
 
