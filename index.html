@@ -360,8 +360,7 @@
             DEFAULT_URI = "https://mixpanel.com/api/2.0"
             BASE_URI = end_point === "export" ? DATA_URI : DEFAULT_URI;
             $.getJSON("" + BASE_URI + "/" + end_point, args, function(result) {
-              console.log(result);
-              MPTable({ // create table; try scrolling horizontally over demo below
+              $('#chart').MPTable({ // create table; try scrolling horizontally over demo below
                   data: results,
                   showPercentages: false,
                   firstColHeader: 'Event Names'
