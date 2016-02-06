@@ -361,7 +361,7 @@
             BASE_URI = end_point === "export" ? DATA_URI : DEFAULT_URI;
             $.getJSON("" + BASE_URI + "/" + end_point, args, function(result) {
               $('#chart').MPTable({ // create table; try scrolling horizontally over demo below
-                  data: results,
+                  data: result,
                   showPercentages: false,
                   firstColHeader: 'Event Names'
               });
