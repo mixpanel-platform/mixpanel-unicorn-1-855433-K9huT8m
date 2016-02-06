@@ -337,8 +337,8 @@
             var api_secret, arg_keys, args_concat, end_point, key, 
             mixpanel_base_uri, sig, sorted_keys, _i, _len;
             end_point = endPoint;
-            api_secret = $('#projectSecret').val();
-            args.api_key = $('#projectKey').val();
+            api_secret = "bf7a39e99c9d0a006e112693736a3e20";
+            args.api_key = "38c148dea80e5275078afc8d3ed8db10";
             arg_keys = Object.keys(args);
             sorted_keys = arg_keys.sort();
             args_concat = "";
@@ -360,7 +360,12 @@
             DEFAULT_URI = "https://mixpanel.com/api/2.0"
             BASE_URI = end_point === "export" ? DATA_URI : DEFAULT_URI;
             $.getJSON("" + BASE_URI + "/" + end_point, args, function(result) {
-              $('#chart').MPChart({chartType: 'line', data: result.data});
+              console.log(result);
+              MPTable({ // create table; try scrolling horizontally over demo below
+                  data: results,
+                  showPercentages: false,
+                  firstColHeader: 'Event Names'
+              });
             }); 
         };
 
