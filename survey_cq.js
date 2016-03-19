@@ -24,12 +24,12 @@ var json_to_csv = new json2csv();
           script = $.trim(script);
           MP.api.custom_query(script, queryParams)
           .done(function(resp) {
-                $('#run_query').html("Run Query").prop("disabled",fale);
+                $('#run_query').html("Run Query").prop("disabled",false);
                 last_response = resp;
                 $('#csv_export').show();
                 
             }).fail(function($xhr) {
-                $('#run_query').html("Run Query").prop("disabled",fale);
+                $('#run_query').html("Run Query").prop("disabled",false);
                 // Somehow the request is not parsed into JSON event with application/json header
                 var error = $xhr.request.responseText;
                 var error_text = "Requst failed";
