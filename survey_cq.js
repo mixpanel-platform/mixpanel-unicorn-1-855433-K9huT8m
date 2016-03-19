@@ -20,7 +20,6 @@ var json_to_csv = new json2csv();
             surveyID: survey_id
           };
           var script = $('#cq_survey').html();
-          script = script.replace(/REPLACE_WITH_SURVEY_ID/g, queryParams);
           script = $.trim(script);
           MP.api.custom_query(script, queryParams)
           .done(function(resp) {
