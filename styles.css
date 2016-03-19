@@ -45,3 +45,15 @@ h3 {
         font-weight: 500;
         line-height: 20px;
 }
+
+.editMPT {
+    background-image: url('//cdn.mxpnl.com/cache/8d1bd66012e0d2d598cdc9c8bde18af9/images/reports/mpplatform/header_icons.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    height: 13px;
+    left: 6px;
+    top: 3px;
+    width: 13px;
+}
+        
+}
