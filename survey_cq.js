@@ -3,7 +3,6 @@ var json_to_csv = new json2csv();
       var last_response = undefined;
   
        $('#run_query').on('click', function(e, survey) {
-        $('#csv_export').hide();
          survey_id = $('#surveySelect').val();
          runQuery();
         });
@@ -12,6 +11,7 @@ var json_to_csv = new json2csv();
             var csv = "data:text/csv;charset=utf-8," + json_to_csv.jsonToCSV(last_response);
             $(this).attr("href", encodeURI(csv)).attr("download", 
                   "Survey_Export_" + survey_id + "_" + moment().format('MMM-DD-YYYY') + ".csv");
+            $('#csv_export').hide();
         });
           
         var runQuery = function() {
