@@ -54,6 +54,11 @@ h3 {
     left: 6px;
     top: 3px;
     width: 13px;
-}
+    content: '';
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    left: 0;
+    top: 0;
         
 }
