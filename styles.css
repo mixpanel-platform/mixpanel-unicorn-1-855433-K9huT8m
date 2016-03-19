@@ -22,3 +22,11 @@
         margin: 0px 20px 0px;
         width: 200px;
       }
+      
+h1 {
+        color: #5c617b;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 35px;
+}
