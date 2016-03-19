@@ -15,12 +15,15 @@
 <body class="mixpanel-platform-body">
   <h2>Enter Project Credentials</h2>
   <div class="mixpanel-platform-section">
-      <h1 style="display:none;" class="myDisplay" id="displayName"></h1>
+      <h1 style="display:none;" class="myDisplay" id="displayName">
+        <a class="editMPT" id="changeSubmitCred">
+        </a>
+      </h1>
       <input style="float: left;" class="myInput" placeholder="Project Name" id="projectName"/>
       <input style="float: left;" class="myInput" placeholder="API Key" id="projectKey"/>
       <input style="float: left;" class="myInput" placeholder="API Secret" id="projectSecret"/>
-      <a class="button button_primary myDisplay" id="submitCred">Set API Credentials</a>
-      <a style="display:none;" class="button button_primary" id="changeSubmitCred">Change API Credentials</a>
+      <a class="button button_primary" id="submitCred">Set API Credentials</a>
+      
       <div style="clear: both;"></div>
     </div>
     <div style="display:none;" id="mp_toolbox" class="mixpanel-platform-section">
