@@ -15,7 +15,7 @@
 <body class="mixpanel-platform-body">
   <h2>Enter Project Credentials</h2>
   <div class="mixpanel-platform-section">
-      <h2 style="display:none;" class="myDisplay" id="displayName"></h2>
+      <h1 style="display:none;" class="myDisplay" id="displayName"></h1>
       <input style="float: left;" class="myInput" placeholder="Project Name" id="projectName"/>
       <input style="float: left;" class="myInput" placeholder="API Key" id="projectKey"/>
       <input style="float: left;" class="myInput" placeholder="API Secret" id="projectSecret"/>
@@ -42,7 +42,7 @@
           $("#mp_toolbox").show();
           $(".myInput").hide();
           $(".myDisplay").show();
-          $("#displayName").html($('#projectName').val());
+          $("#displayName").html("Project Name: " + $('#projectName').val());
         });
         $("#changeSubmitCred").click(function() {
           $("#mp_toolbox").show();
