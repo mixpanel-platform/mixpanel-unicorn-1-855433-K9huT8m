@@ -30,3 +30,11 @@ h2 {
         font-weight: 500;
         line-height: 35px;
 }
+
+h3 {
+        color: #5c617b;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 35px;
+}
