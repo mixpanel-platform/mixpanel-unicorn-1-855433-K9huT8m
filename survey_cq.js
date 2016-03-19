@@ -10,7 +10,8 @@ var json_to_csv = new json2csv();
         
        $("body").delegate( "#csv_export", "click", function() {
             var csv = "data:text/csv;charset=utf-8," + json_to_csv.jsonToCSV(last_response);
-            $(this).attr("href", encodeURI(csv)).attr("download", survey_id + ".csv");
+            $(this).attr("href", encodeURI(csv)).attr("download", 
+                  "Survey_Export_ID_" + survey_id + "_" + moment().format('MMM-DD-YYYY') + ".csv");
         });
           
         var runQuery = function() {
