@@ -15,10 +15,11 @@
 <body class="mixpanel-platform-body">
   <h2>Enter Project Credentials</h2>
   <div class="mixpanel-platform-section">
+      <h2 style="display:none;" class="myDisplay" id="displayName"></h2>
       <input style="float: left;" class="myInput" placeholder="Project Name" id="projectName"/>
       <input style="float: left;" class="myInput" placeholder="API Key" id="projectKey"/>
       <input style="float: left;" class="myInput" placeholder="API Secret" id="projectSecret"/>
-      <a class="button button_primary" id="submitCred">Set API Credentials</a>
+      <a class="button button_primary myDisplay" id="submitCred">Set API Credentials</a>
       <a style="display:none;" class="button button_primary" id="changeSubmitCred">Change API Credentials</a>
       <div style="clear: both;"></div>
     </div>
@@ -39,13 +40,14 @@
         $("#submitCred").click(function() {
           MP.api.setCredentials($('#projectKey').val(), $('#projectSecret').val());
           $("#mp_toolbox").show();
-          $("#submitCred #projectSecret #projectKey").hide();
-          $("#changeSubmitCred").show();
+          $(".myInput").hide();
+          $(".myDisplay").show();
+          $("#displayName"),html($('#projectName').val());
         });
         $("#changeSubmitCred").click(function() {
           $("#mp_toolbox").show();
-          $("#changeSubmitCred").hide();
-          $("#submitCred #projectSecret #projectKey").show();
+          $(".myDisplay").hide();
+          $(".myInput").show();
         });
     </script>
  
