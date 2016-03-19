@@ -20,7 +20,7 @@
       <a class="button button_primary" id="submitCred">Set API Credentials</a>
       <div style="clear: both;"></div>
     </div>
-    <div class="mixpanel-platform-section">
+    <div style="display:none;" id="mp_toolbox" class="mixpanel-platform-section">
       <h2>Survey Export:</h2>
       <h3>Leave blank to return ALL survey data for the project.</h3>
       <h3><a href="#" target="_blank">Click here for instructions to grab the survey ID</a></h3>
@@ -37,6 +37,7 @@
         $(function() {
           $("#submitCred").click(function() {
             MP.api.setCredentials($('#projectKey').val(), $('#projectSecret').val());
+            $("#mp_toolbox").show();
           });
         });
     </script>
