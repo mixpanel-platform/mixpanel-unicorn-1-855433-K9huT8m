@@ -19,10 +19,10 @@
         <a class="editMPT" id="changeSubmitCred">
         </a>
       </h1>
-      <input style="float: left;" class="myInput" placeholder="Project Name" id="projectName"/>
-      <input style="float: left;" class="myInput" placeholder="API Key" id="projectKey"/>
-      <input style="float: left;" class="myInput" placeholder="API Secret" id="projectSecret"/>
-      <a class="button button_primary myInput" id="submitCred">Set API Credentials</a>
+      <input style="float: left;" class="myInput credInput" placeholder="Project Name" id="projectName"/>
+      <input style="float: left;" class="myInput credInput" placeholder="API Key" id="projectKey"/>
+      <input style="float: left;" class="myInput credInput" placeholder="API Secret" id="projectSecret"/>
+      <a class="button button_primary credInput" id="submitCred">Set API Credentials</a>
       
       <div style="clear: both;"></div>
     </div>
@@ -43,14 +43,14 @@
         $("#submitCred").click(function() {
           MP.api.setCredentials($('#projectKey').val(), $('#projectSecret').val());
           $("#mp_toolbox").show();
-          $(".myInput").hide();
+          $(".credInput").hide();
           $(".myDisplay").show();
           $("#displayName").html("Project Name: " + $('#projectName').val());
         });
         $("#changeSubmitCred").click(function() {
           $("#mp_toolbox").show();
           $(".myDisplay").hide();
-          $(".myInput").show();
+          $(".credInput").show();
         });
     </script>
  
