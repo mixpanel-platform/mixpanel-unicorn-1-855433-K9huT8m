@@ -51,14 +51,9 @@ h3 {
     background-repeat: no-repeat;
     background-position: 0 0;
     height: 13px;
-    left: 6px;
-    top: 3px;
-    width: 13px;
-    content: '';
-    width: 18px;
-    height: 18px;
-    position: absolute;
     left: 0;
     top: 0;
+    width: 13px;
+    position: absolute;
         
 }
