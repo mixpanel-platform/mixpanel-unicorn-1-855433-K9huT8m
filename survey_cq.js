@@ -3,7 +3,7 @@ var json_to_csv = new json2csv();
       var last_response = undefined;
   
        $('#run_query').on('click', function(e, survey) {
-         $('#run_query').html("Please Wait...");
+         $('#run_query').html("Please Wait...").prop("disabled",true);
          survey_id = $('#surveySelect').val();
          runQuery();
         });
@@ -24,12 +24,12 @@ var json_to_csv = new json2csv();
           script = $.trim(script);
           MP.api.custom_query(script, queryParams)
           .done(function(resp) {
-                $('#run_query').html("Run Query");
+                $('#run_query').html("Run Query").prop("disabled",fale);
                 last_response = resp;
                 $('#csv_export').show();
                 
             }).fail(function($xhr) {
-                $('#run_query').html("Run Query");
+                $('#run_query').html("Run Query").prop("disabled",fale);
                 // Somehow the request is not parsed into JSON event with application/json header
                 var error = $xhr.request.responseText;
                 var error_text = "Requst failed";
