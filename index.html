@@ -13,6 +13,8 @@
     <script src="json2csv.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="tooltips.css">
+    <!--Add in new CQ Files here-->
+    <script src="survey_cq.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body class="mixpanel-platform-body">
@@ -73,35 +75,7 @@
             });
         }
     </script>
-    <script type="text/cq" id="cq_survey">
-        function main() {
-          return People(
-          ).filter(function(user){
-            var isSurvey = false;
-            var surveyId = params.surveyID;
-            _.each(user.properties.$answers, function(v,k) {
-                if(v.$survey_id == surveyId)
-                  isSurvey = true
-            })
-            return isSurvey
-          }).map(function(user) {
-            var surveyId = params.surveyID;
-            var answers = {};
-            _.each(user.properties.$answers, function(v,k) {
-                if(v.$survey_id == surveyId){
-                  answers["Collection ID"] = v.$collection_id;
-                  answers["Question ID - " + v.$question_id] = v.$value;
-                }
-            })
-            return {
-              "distinct_id": user.distinct_id,
-              "Email": user.properties.$email,
-              "City": user.properties.$city,
-              "Suvery": answers
-              }
-          });
-        }
-    </script>
+
 
 </body>
 </html>
