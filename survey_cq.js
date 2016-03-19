@@ -1,4 +1,3 @@
-    <script type="text/cq" id="cq_survey">
         function main() {
           return People(
           ).filter(function(user){
@@ -26,4 +25,3 @@
               }
           });
         }
-    </script>
