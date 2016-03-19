@@ -31,10 +31,16 @@
         </div>
         <button style="display:none;" class="button button_primary" id="csv_export">Export to CSV</button>
     </div>
+    <script>
+        $(function() {
+          $("#submitCred").click(function() {
+            MP.api.setCredentials($('#projectKey').val(), $('#projectSecret').val());
+          });
+        });
+    </script>
  
-  
+    <!--Custom Query Scripts Go Here - KEEP IT CLEAN -->
     <script src="survey_cq.js" type="text/javascript" charset="utf-8"></script>
-
     <script type="text/cq" id="cq_survey">
         function main() {
           return People(
